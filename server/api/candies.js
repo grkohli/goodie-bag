@@ -5,11 +5,10 @@ const Candy = require('../db/models/Candy')
 
 //getting all the candies in the database
 router.get('/', async (req, res, next) => {
-    console.log('in get!')
     try {
         const allCandies = await Candy.findAll();
         // console.log('All Candies', allCandies)
-        res.send(allCandies);
+        res.json(allCandies);
     } catch (error) {
         console.log('Uh Oh! Something went wrong')        
         next(error);
@@ -18,7 +17,6 @@ router.get('/', async (req, res, next) => {
 
 //getting candy by id
 router.get('/:id', async (req, res, next) => {
-    console.log('in get!')
     try {
         const id = req.params.id;
         const candyById = await Candy.findOne({
@@ -27,9 +25,9 @@ router.get('/:id', async (req, res, next) => {
             }
         });
         if (candyById) {
-            res.send(candyById);
+            res.json(candyById);
         } else {
-            res.send('That candy does not exist!!')
+            res.json('That candy does not exist!!')
         }
 
     } catch (error) {
@@ -42,7 +40,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const newCandy = await Candy.create(req.body);
-        res.send(newCandy);
+        res.json(newCandy);
     } catch (error) {
         console.log('Uh Oh! Something went wrong')
         next(error);
@@ -61,9 +59,9 @@ router.delete('/:id', async (req, res, next) => {
 
         if (candyToDelete) {
             await candyToDelete.destroy();
-            res.send('Candy was deleted');
+            res.json('Candy was deleted');
         } else {
-            res.send('You cannot delete a candy that doess not exist!');
+            res.json('You cannot delete a candy that doess not exist!');
         }
         
     } catch (error) {

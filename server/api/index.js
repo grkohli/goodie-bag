@@ -1,6 +1,6 @@
 'use strict'
 
-const app = require('express').Router()
+const router = require('express').Router()
 // Your routes go here!
 // NOTE: Any routes that you put here are ALREADY mounted on `/api`
 // You can put all routes in this file HOWEVER,
@@ -18,12 +18,12 @@ const app = require('express').Router()
 // middleware will generate a 404, and send it to your
 // error-handling endware!
 
-app.use('/candies', require('./candies'));
+router.use('/candies', require('./candies'));
 
-app.use((req, res, next) => {
+router.use((req, res, next) => {
   const err = new Error('API route not found!')
   err.status = 404
   next(err)
 })
 
-module.exports = app
+module.exports = router

@@ -1,44 +1,41 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import SingleCandy from './SingleCandy'
 import {getCandies} from '../reducers/index'
 
-class Candies extends React.Component {
+class CandiesList extends React.Component {
     componentDidMount() {
       this.props.getCandies();
     }
 
     render () {
-      const {candies} = this.props
       return (
           <div>
-            Hello!
+            <h2 className="section-title">Candies</h2>
+            <ul className="candy-container">
+              {
+                this.props.candies.map(candy => {
+                  return (<div className="single-candy" key={candy.id}>
+                    <SingleCandy candy={candy} />
+                          </div>)
+                })
+              }
+            </ul>
           </div>
-        // <div>
-        //   <List
-        //     forEachOfThese={candies}
-        //     doThis={candy => (
-        //       <div key={candy.id}>
-        //         <img src={candy.imageUrl} />
-        //         <p>{candy.name}</p>
-        //       </div>
-        //     )}
-        //     unlessEmpty={() => <div>Where are the pets?!?</div>}
-        //   />
-        // </div>
       )
     }
   }
 
-  const mapState = (state) => {
+  const mapStatetoProps = (state) => {
     return {
-      candies: state.candies
+      candies: state.allCandies
     }
   }
 
-  const mapDispatch = (dispatch) => {
+  const mapDispatchtoProps = (dispatch) => {
     return {
       getCandies: () => dispatch(getCandies())
     }
   }
 
-  export default connect(mapState, mapDispatch)(Candies)
+  export default connect(mapStatetoProps, mapDispatchtoProps)(CandiesList)
