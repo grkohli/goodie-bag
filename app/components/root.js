@@ -1,15 +1,17 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Hashrouter as Router, Route, Link} from 'react-router-dom'
 import CandiesList from './CandiesList'
 
 const Root = () => {
   return (
     <div>
-      <NavLink to="/api/candies"> Go to All Candies</NavLink>
-      {/* <nav>
-        Goodie Bag
-        <NavLink to="/api/candies"> Go to All Candies</NavLink>
-      </nav> */}
+      <nav>
+        <Link to="/api/candies">Goodie Bag</Link>
+      </nav>
+      {/* <Router>
+        <Route path="/api/candies" component={CandiesList} />
+      </Router> */}
+
       <main>
         <h1>Welcome to the Goodie Bag!</h1>
         <p>What a nice home page for your goodies!</p>
@@ -18,4 +20,4 @@ const Root = () => {
   )
 }
 
-export default Root
+export default Root;

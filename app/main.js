@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 
 import store from './store'
 import Root from './components/root'
+import CandiesList from './components/CandiesList.js'
 
 ReactDOM.render(
   <Provider store={store}>
